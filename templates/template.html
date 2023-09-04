@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Speaker Test</title>
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+        <h1>Speaker Test</h1>
+    </header>
+    <main>
+        <h2>Upload Audio</h2>
+        <form method="POST" action="/speaker_test" enctype="multipart/form-data">
+            <input type="file" name="audio" accept=".flac, .wav, .mp3, .wma">
+            <input type="submit" value="Upload">
+        </form>
+        
+        <h2>Results</h2>
+        <div id="results">
+            {% if result %}
+            <p>Most Similar Speaker: {{ result['most_similar_speaker'] }}</p>
+            <p>Prediction: {{ result['prediction'] }}</p>
+            <p>Response Time: {{ result['respond_time'] }}</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
